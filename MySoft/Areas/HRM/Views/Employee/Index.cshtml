@@ -6,20 +6,28 @@
 
 @if (Model.Employees!=null)
 {
-    @foreach (var emp in Model.Employees)
-    {
-        <table>
+
+        <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Employee Code</th>
+                    <th>Name</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                </tr>
-            </tbody>
+                @foreach (var emp in Model.Employees)
+                {
+                    <tr>
+                        <td>@emp.employeeCode</td>
+                        <td>@emp.name</td>
+                        <td>@emp.contactNumber</td>
+                        <td>@emp.address</td>
+                    </tr>
+                }
+                </tbody>
         </table>
-    }
+    
 }
 
