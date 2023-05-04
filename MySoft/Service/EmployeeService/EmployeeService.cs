@@ -4,14 +4,35 @@ using MySoft.Entity.EmployeeEntity;
 
 namespace MySoft.Service.EmployeeService
 {
+
+    #region ChangeCode
+    public interface IEmployeeService
+    {
+        Task<List<Employee>> GetALLEmployeeAsync();
+        Task<Employee> GetEmployeeAsync(int Id);
+        Task<string> SaveEmployeeAsync(Employee model);
+        Task<string> DeleteEmployeeAsync(int Id);
+    }
+    #endregion
+
+
+
+
     public class EmployeeService
     {
         #region ChangeCode
+
+
+
+        #region Constructor
         private readonly AppDbContext _context;
         public EmployeeService(AppDbContext context)
         {
             this._context = context;
         }
+        #endregion
+
+
 
         public async Task<List<Employee>> GetALLEmployeeAsync()
         {
@@ -71,9 +92,6 @@ namespace MySoft.Service.EmployeeService
 
             return responseMsg;
         }
-
-
-
 
         public async Task<string> DeleteEmployeeAsync(int Id)
         {
