@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MySoft.Entity.CountryEntity;
 using MySoft.Entity.EmployeeEntity;
 
 namespace MySoft.Entity
@@ -16,8 +17,10 @@ namespace MySoft.Entity
         }
 
 
-        //add new line for every new table in entity folder except common property model
+        //add new line for every new table in entity folder 
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Country> Country { get; set; }
+    
 
 
 

@@ -4,6 +4,7 @@ namespace MySoft.Areas.HRM.Models
 {
     public class VmEmployee
     {
+
         //primary Property
         public int EmployeeId { get; set; }
 

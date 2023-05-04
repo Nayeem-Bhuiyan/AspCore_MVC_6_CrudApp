@@ -1,6 +1,9 @@
 using MySoft.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Mvc.Razor;
+using MySoft.Service.EmployeeService;
+using MySoft.Service.CountryService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +12,29 @@ builder.Services.AddControllersWithViews();
 
 
 #region ChangeCode
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<AppDbContext>(Option => Option.UseSqlServer(builder.Configuration.GetConnectionString("AppDbConnection")));
 
 
-//builder.Services.AddScoped<IDropboxTestService, DropboxTestService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<ICountryService,CountryService>();
+
+
+
+#region Areas Config
+builder.Services.Configure<RazorViewEngineOptions>(options =>
+{
+    options.AreaViewLocationFormats.Clear();
+    options.AreaViewLocationFormats.Add("/Areas/{2}/{0}" + RazorViewEngine.ViewExtension);
+    options.AreaViewLocationFormats.Add("/areas/{2}/Views/{1}/{0}.cshtml");
+    options.AreaViewLocationFormats.Add("/areas/{2}/Views/Shared/{0}.cshtml");
+    options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+    // {0} - Action Name
+    // {1} - Controller Name
+    // {2} - Area Name
+});
+
+#endregion
 
 #endregion
 
@@ -37,8 +59,19 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+#region ChangeCode
+app.MapRazorPages();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "MyArea",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+#endregion
 
 app.Run();
