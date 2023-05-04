@@ -7,7 +7,7 @@
 @if (Model.Employees!=null)
 {
     <p class="h1 text-center fw-bolder mb-5">Employee List</p>
-    <a asp-area="HRM" asp-controller="Employee" asp-action="Create" class="btn btn-primary">Add New</a>
+    <a asp-area="HRM" asp-controller="Employee" asp-action="Create" class="btn btn-primary mb-3 mt-3">Add New</a>
 
 
     <table class="table table-bordered">
@@ -25,14 +25,14 @@
             @foreach (var emp in Model.Employees)
             {
                 <tr>
-                    <td>@emp.employeeCode</td>
-                    <td>@emp.name</td>
-                    <td>@emp.contactNumber</td>
-                    <td>@emp.address</td>
+                    <td>@emp?.employeeCode</td>
+                    <td>@emp?.name</td>
+                    <td>@emp?.contactNumber</td>
+                    <td>@emp?.address</td>
                     <td>
-                        <a asp-area="HRM" asp-controller="Employee" asp-action="Details" class="btn btn-success">Details</a>
-                        <a asp-area="HRM" asp-controller="Employee" asp-action="Index" class="btn btn-warning">Edit</a>
-                        <a asp-area="HRM" asp-controller="Employee" asp-action="Index" class="btn btn-danger">Delete</a>
+                        <a asp-area="HRM" asp-controller="Employee" asp-action="Details" asp-route-id="@emp?.Id" class="btn btn-success">Details</a>
+                        <a asp-area="HRM" asp-controller="Employee" asp-action="Create" asp-route-id="@emp?.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="HRM" asp-controller="Employee" asp-action="Delete" asp-route-id="@emp?.Id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             }

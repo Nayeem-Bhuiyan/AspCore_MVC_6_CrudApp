@@ -1,8 +1,29 @@
-﻿
+﻿@model Employee
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Details</h1>
+<a asp-area="HRM" asp-controller="Employee" asp-action="Index" class="btn btn-success mb-3 mt-3">Back To List</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Employee Code</th>
+        <td>@Model?.employeeCode</td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td>@Model?.name</td>
+    </tr>
 
+    <tr>
+        <th>Contact</th>
+        <td>@Model?.contactNumber</td>
+    </tr>
+
+    <tr>
+        <th>Address</th>
+        <td>@Model?.address</td>
+    </tr>
+
+</table>

@@ -61,7 +61,7 @@ namespace MySoft.Areas.HRM.Controllers
 
 
         // POST: EmployeeController/Delete/5
-        [HttpPost]
+        [HttpGet]
         //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id)
         {
