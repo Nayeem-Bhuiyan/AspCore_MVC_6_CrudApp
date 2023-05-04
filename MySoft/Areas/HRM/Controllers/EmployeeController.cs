@@ -1,28 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MySoft.Entity;
+﻿using Microsoft.AspNetCore.Mvc;
+using MySoft.Service.EmployeeService;
 
-namespace MySoft.Areas.Employee.Controllers
+namespace MySoft.Areas.HRM.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly AppDbContext _context;
-        public EmployeeController(AppDbContext context)
-        {
-            this._context = context;
-        }
 
+        #region Constructor
+        private readonly IEmployeeService _employeeService;
+        public EmployeeController(IEmployeeService employeeService)
+        {
+            this._employeeService = employeeService;
+        }
+        #endregion
 
         // GET: EmployeeController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await _employeeService.GetALLEmployeeAsync());
         }
 
         // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            return View(await _employeeService.GetEmployeeAsync(id));
         }
 
         // GET: EmployeeController/Create
@@ -34,7 +35,7 @@ namespace MySoft.Areas.Employee.Controllers
         // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(IFormCollection collection)
         {
             try
             {
@@ -55,7 +56,7 @@ namespace MySoft.Areas.Employee.Controllers
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -76,7 +77,7 @@ namespace MySoft.Areas.Employee.Controllers
         // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
             try
             {
