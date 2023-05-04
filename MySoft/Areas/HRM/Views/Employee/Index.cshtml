@@ -6,28 +6,38 @@
 
 @if (Model.Employees!=null)
 {
+    <p class="h1 text-center fw-bolder mb-5">Employee List</p>
+    <a asp-area="HRM" asp-controller="Employee" asp-action="Create" class="btn btn-primary">Add New</a>
 
-        <table class="table table-bordered">
-            <thead>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee Code</th>
+                <th>Name</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var emp in Model.Employees)
+            {
                 <tr>
-                    <th>Employee Code</th>
-                    <th>Name</th>
-                    <th>Contact Number</th>
-                    <th>Address</th>
+                    <td>@emp.employeeCode</td>
+                    <td>@emp.name</td>
+                    <td>@emp.contactNumber</td>
+                    <td>@emp.address</td>
+                    <td>
+                        <a asp-area="HRM" asp-controller="Employee" asp-action="Details" class="btn btn-success">Details</a>
+                        <a asp-area="HRM" asp-controller="Employee" asp-action="Index" class="btn btn-warning">Edit</a>
+                        <a asp-area="HRM" asp-controller="Employee" asp-action="Index" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var emp in Model.Employees)
-                {
-                    <tr>
-                        <td>@emp.employeeCode</td>
-                        <td>@emp.name</td>
-                        <td>@emp.contactNumber</td>
-                        <td>@emp.address</td>
-                    </tr>
-                }
-                </tbody>
-        </table>
-    
+            }
+        </tbody>
+    </table>
+
 }
 

@@ -4,6 +4,7 @@ using MySoft.Service.EmployeeService;
 
 namespace MySoft.Areas.HRM.Controllers
 {
+    [Area("HRM")]
     public class EmployeeController : Controller
     {
 
