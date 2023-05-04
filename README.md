@@ -1,0 +1,1 @@
+# AspCore_MVC_6_CrudApp
