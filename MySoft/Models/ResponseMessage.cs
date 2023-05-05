@@ -4,7 +4,7 @@
     {
         public ResponseMessage()
         {
-            responseDetails="operation successfully done!!";
+            responseDetails="Operation successfully done!!";
             status="success";
         }
         public string status { get; set; }

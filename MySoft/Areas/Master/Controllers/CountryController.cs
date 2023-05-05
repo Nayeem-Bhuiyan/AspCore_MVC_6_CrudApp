@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using MySoft.Areas.HRM.Models;
 using MySoft.Entity;
 using MySoft.Areas.Master.Models;
+using MySoft.Models;
 
 namespace MySoft.Areas.Master.Controllers
 {
@@ -38,9 +39,18 @@ namespace MySoft.Areas.Master.Controllers
         }
 
         // GET: CountryController/Create
-        public ActionResult Create()
+        public ActionResult Create(int id=0)
         {
-            return View();
+            VmCountry VmCountry = new VmCountry
+            {
+
+            };
+            if (id>0)
+            {
+
+            }
+            
+            return View(VmCountry);
         }
 
         // POST: CountryController/Create
@@ -58,41 +68,27 @@ namespace MySoft.Areas.Master.Controllers
             }
         }
 
-        // GET: CountryController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CountryController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
 
         // POST: CountryController/Delete/5
         [HttpGet]
         //[ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id)
         {
+            ResponseMessage responseMessage = new ResponseMessage();
             try
             {
-                return RedirectToAction(nameof(Index));
+                await _countryService.DeleteCountryAsync(id);
+
+                return View(responseMessage);
+                //return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+
+                responseMessage.responseDetails=ex.Message;
+                responseMessage.status="error";
+
+                return View(responseMessage);
             }
         }
     }
