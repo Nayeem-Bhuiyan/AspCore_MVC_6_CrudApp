@@ -1,0 +1,7 @@
+INSERT INTO Country VALUES('Bangladesh','880')
+INSERT INTO Country VALUES('INDIA','770')
+INSERT INTO Country VALUES('Pakisthan','550')
+INSERT INTO Country VALUES('Nepal','330')
+INSERT INTO Country VALUES('Bhutan','440')
+INSERT INTO Country VALUES('UK','220')
+INSERT INTO Country VALUES('US','110')
