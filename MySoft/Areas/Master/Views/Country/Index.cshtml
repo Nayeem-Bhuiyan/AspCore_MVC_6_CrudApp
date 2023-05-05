@@ -1,0 +1,39 @@
+﻿@model MySoft.Areas.Master.Models.VmCountry
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Countries!=null)
+{
+    <p class="h1 text-center fw-bolder mb-5">Country Informations</p>
+    <a asp-area="Master" asp-controller="Country" asp-action="Create" class="btn btn-primary mb-3 mt-3">Add New</a>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Country Code</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var country in Model.Countries)
+            {
+                <tr>
+                    <td>@country?.countryCode</td>
+                    <td>@country?.name</td>
+                    <td>
+                        <a asp-area="Master" asp-controller="Country" asp-action="Details" asp-route-id="@country?.Id" class="btn btn-success">Details</a>
+                        <a asp-area="Master" asp-controller="Country" asp-action="Create" asp-route-id="@country?.Id" class="btn btn-warning">Edit</a>
+                        <a asp-area="Master" asp-controller="Country" asp-action="Delete" asp-route-id="@country?.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+

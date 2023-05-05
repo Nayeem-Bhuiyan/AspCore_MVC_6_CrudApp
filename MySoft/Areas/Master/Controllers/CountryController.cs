@@ -3,10 +3,11 @@ using MySoft.Service.Master;
 using Microsoft.AspNetCore.Http;
 using MySoft.Areas.HRM.Models;
 using MySoft.Entity;
-
+using MySoft.Areas.Master.Models;
 
 namespace MySoft.Areas.Master.Controllers
 {
+    [Area("Master")]
     public class CountryController : Controller
     {
 
@@ -22,7 +23,12 @@ namespace MySoft.Areas.Master.Controllers
         // GET: CountryController
         public async Task<ActionResult> Index()
         {
-            return View(await _countryService.GetALLCountryAsync());
+            VmCountry vmCountry = new VmCountry
+            {
+                Countries=await _countryService.GetALLCountryAsync()
+            };
+
+            return View(vmCountry);
         }
 
         // GET: CountryController/Details/5
@@ -73,15 +79,11 @@ namespace MySoft.Areas.Master.Controllers
             }
         }
 
-        // GET: CountryController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+
 
         // POST: CountryController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
+        //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try

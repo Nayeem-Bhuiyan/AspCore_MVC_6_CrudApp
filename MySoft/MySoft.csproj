@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Areas\HRM\Data\" />
     <Folder Include="Areas\Master\Data\" />
-    <Folder Include="Areas\Master\Models\" />
     <Folder Include="DB_Script\" />
   </ItemGroup>
 
