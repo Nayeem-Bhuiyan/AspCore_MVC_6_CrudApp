@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySoft.Areas.HRM.Models;
+using MySoft.Models;
 using MySoft.Service.HRM;
 using MySoft.Service.Master;
 
@@ -74,14 +75,21 @@ namespace MySoft.Areas.HRM.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id)
         {
+            ResponseMessage responseMessage = new ResponseMessage();
             try
             {
                 await _employeeService.DeleteEmployeeAsync(id);
-                return RedirectToAction(nameof(Index));
+
+                return View(responseMessage);
+                //return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+              
+                responseMessage.responseDetails=ex.Message;
+                responseMessage.status="error";
+
+                return View(responseMessage);
             }
         }
 
