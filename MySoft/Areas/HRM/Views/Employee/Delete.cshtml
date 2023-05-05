@@ -1,0 +1,32 @@
+﻿@model ResponseMessage
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+<style>
+
+</style>
+}
+
+
+<div class="align-content-center">
+    @if (@Model.status=="success")
+    {
+        <p class="bg-primary text-white fw-bolder align-content-center m-auto">Status : @Model.status</p>
+        <p class="bg-success text-white">
+            @Model.responseDetails
+        </p>
+    }
+    else
+    {
+        <p class="bg-warning text-black">Status : @Model.status</p>
+        <p class="bg-danger text-white fw-bolder align-content-center m-auto">
+            @Model.responseDetails
+        </p>
+    }
+
+<a class="btn btn-primary p-3 m-3 fw-bolder" asp-area="HRM" asp-controller="Employee" asp-action="Index">Back To List</a>
+
+</div>
