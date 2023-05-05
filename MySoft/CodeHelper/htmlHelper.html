@@ -15,28 +15,64 @@
 <!--Response Message-->
 
 
-@section Styles {
+<!--@section Styles {
 <style>
+    .roundMessageHeading {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 5px solid #808080;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        margin: auto;
+        vertical-align: middle;
+        font-weight: bolder;
+    }
+
+    .roundMessageDetailsBox {
+        width: 400px;
+        height: 80px;
+        padding: 20px;
+        border: 5px solid yellow;
+        color: white;
+        text-align: center;
+        margin: auto;
+        vertical-align: middle;
+        font-weight: bolder;
+    }
 </style>
+}-->
+
+
+
+<!--@if (@Model?.status=="success")
+{
+<div class="card" style="margin-top:200px;">
+
+    <div class="card-body">
+        <p class="bg-primary roundMessageHeading" style="border-radius:50%"><span>@Model.status</span></p>
+        <p class="bg-success roundMessageDetailsBox">
+            <span> @Model.responseDetails</span>
+        </p>
+    </div>
+
+</div>
+
+
+
+
+
+}
+else
+{
+<p class="bg-warning roundMessageHeading">@Model.status</p>
+<p class="bg-danger roundMessageDetailsBox">
+    @Model.responseDetails
+</p>
 }
 
+<a class="btn btn-primary text-center p-3 m-3 fw-bolder" asp-area="Master" asp-controller="Country" asp-action="Index">Back To List</a>-->
 
-<!--<div class="align-content-center">
-    @if (@Model.status=="success")
-    {
-    <p class="bg-primary text-white fw-bolder align-content-center m-auto">Status : @Model.status</p>
-    <p class="bg-success text-white fw-bolder align-content-center m-auto p-5">
-        @Model.responseDetails
-    </p>
-    }
-    else
-    {
-    <p class="bg-warning text-black fw-bolder align-content-center m-auto">Status : @Model.status</p>
-    <p class="bg-danger text-white fw-bolder align-content-center m-auto p-5">
-        @Model.responseDetails
-    </p>
-    }
 
-    <a class="btn btn-primary p-3 m-3 fw-bolder" asp-area="HRM" asp-controller="Employee" asp-action="Index">Back To List</a>
-
-</div>-->
+<!--Response Message END-->
