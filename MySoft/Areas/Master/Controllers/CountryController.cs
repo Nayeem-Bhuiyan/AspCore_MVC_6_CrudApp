@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MySoft.Service.Master;
+using Microsoft.AspNetCore.Http;
 using MySoft.Areas.HRM.Models;
 using MySoft.Entity;
-using MySoft.Service.CountryService;
 
-namespace MySoft.Areas.MasterData.Controllers
+
+namespace MySoft.Areas.Master.Controllers
 {
     public class CountryController : Controller
     {

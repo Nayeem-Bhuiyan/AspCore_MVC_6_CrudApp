@@ -2,14 +2,13 @@ using MySoft.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.AspNetCore.Mvc.Razor;
-using MySoft.Service.EmployeeService;
-using MySoft.Service.CountryService;
+using MySoft.Service.HRM;
+using MySoft.Service.Master;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddRazorPages();
 
 #region ChangeCode

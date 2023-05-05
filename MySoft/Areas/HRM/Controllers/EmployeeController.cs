@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySoft.Areas.HRM.Models;
-using MySoft.Service.EmployeeService;
+using MySoft.Service.HRM;
 
 namespace MySoft.Areas.HRM.Controllers
 {

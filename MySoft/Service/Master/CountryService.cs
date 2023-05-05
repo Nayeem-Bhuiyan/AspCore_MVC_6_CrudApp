@@ -1,24 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MySoft.Entity.Master;
 using MySoft.Entity;
-using MySoft.Entity.EmployeeEntity;
+using Microsoft.EntityFrameworkCore;
 
-namespace MySoft.Service.EmployeeService
+namespace MySoft.Service.Master
 {
-
     #region ChangeCode
-    public interface IEmployeeService
+    public interface ICountryService
     {
-        Task<List<Employee>> GetALLEmployeeAsync();
-        Task<Employee> GetEmployeeAsync(int Id);
-        Task<string> SaveEmployeeAsync(Employee model);
-        Task<string> DeleteEmployeeAsync(int Id);
+        Task<List<Country>> GetALLCountryAsync();
+        Task<Country> GetCountryAsync(int Id);
+        Task<string> SaveCountryAsync(Country model);
+        Task<string> DeleteCountryAsync(int Id);
     }
     #endregion
 
 
 
 
-    public class EmployeeService: IEmployeeService
+    public class CountryService : ICountryService
     {
         #region ChangeCode
 
@@ -26,7 +25,7 @@ namespace MySoft.Service.EmployeeService
 
         #region Constructor
         private readonly AppDbContext _context;
-        public EmployeeService(AppDbContext context)
+        public CountryService(AppDbContext context)
         {
             this._context = context;
         }
@@ -34,55 +33,55 @@ namespace MySoft.Service.EmployeeService
 
 
 
-        public async Task<List<Employee>> GetALLEmployeeAsync()
+        public async Task<List<Country>> GetALLCountryAsync()
         {
-            List<Employee> lstEmployee = new List<Employee>();
+            List<Country> lstCountry = new List<Country>();
             try
             {
-                lstEmployee=await _context.Employee.ToListAsync();
+                lstCountry=await _context.Country.ToListAsync();
             }
             catch (Exception)
             {
-                lstEmployee=new List<Employee>();
+                lstCountry=new List<Country>();
             }
 
-            return lstEmployee;
+            return lstCountry;
         }
 
-        public async Task<Employee> GetEmployeeAsync(int Id)
+        public async Task<Country> GetCountryAsync(int Id)
         {
-           
-            Employee ObjEmployee = new Employee(); 
+
+            Country ObjCountry = new Country();
             try
             {
                 //Search object in DB to delete
-                ObjEmployee=await _context.Employee.FindAsync(Id); ;
+                ObjCountry=await _context.Country.FindAsync(Id); ;
             }
             catch (Exception)
             {
-                ObjEmployee = new Employee();
+                ObjCountry = new Country();
             }
 
-            return ObjEmployee;
+            return ObjCountry;
         }
 
-        public async Task<string> SaveEmployeeAsync(Employee model)
+        public async Task<string> SaveCountryAsync(Country model)
         {
             string responseMsg = string.Empty;
             try
             {
                 if (model.Id>0)
                 {
-                    _context.Employee.Update(model);
+                    _context.Country.Update(model);
                     await _context.SaveChangesAsync();
                 }
                 else
                 {
-                    _context.Employee.Add(model);
+                    _context.Country.Add(model);
                     await _context.SaveChangesAsync();
                 }
-               
-                
+
+
                 responseMsg="success";
             }
             catch (Exception ex)
@@ -93,18 +92,18 @@ namespace MySoft.Service.EmployeeService
             return responseMsg;
         }
 
-        public async Task<string> DeleteEmployeeAsync(int Id)
+        public async Task<string> DeleteCountryAsync(int Id)
         {
 
             string responseMsg = string.Empty;
             try
             {
                 //Search object in DB to delete
-                Employee ObjEmployee= await _context.Employee.FindAsync(Id);
+                Country ObjCountry = await _context.Country.FindAsync(Id);
 
-                if (ObjEmployee!=null)
+                if (ObjCountry!=null)
                 {
-                    _context.Employee.Remove(ObjEmployee);
+                    _context.Country.Remove(ObjCountry);
                     _context.SaveChanges();
                     responseMsg="success";
                 }
@@ -112,7 +111,7 @@ namespace MySoft.Service.EmployeeService
                 {
                     responseMsg="error";
                 }
-               
+
             }
             catch (Exception ex)
             {

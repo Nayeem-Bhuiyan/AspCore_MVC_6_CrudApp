@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySoft.Entity.CountryEntity;
-using MySoft.Entity.EmployeeEntity;
+using MySoft.Entity.HRM;
+using MySoft.Entity.Master;
 
 namespace MySoft.Entity
 {

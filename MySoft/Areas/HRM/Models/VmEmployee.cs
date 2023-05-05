@@ -1,4 +1,4 @@
-﻿using MySoft.Entity.EmployeeEntity;
+﻿using MySoft.Entity.HRM;
 
 namespace MySoft.Areas.HRM.Models
 {
