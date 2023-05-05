@@ -1,4 +1,5 @@
 ﻿using MySoft.Entity.HRM;
+using MySoft.Entity.Master;
 
 namespace MySoft.Areas.HRM.Models
 {
@@ -19,5 +20,6 @@ namespace MySoft.Areas.HRM.Models
         //Object and list property of EntityModel
         public Employee Employee { get; set; }
         public List<Employee> Employees { get; set; }
+        public List<Country> Countries { get; set; }
     }
 }

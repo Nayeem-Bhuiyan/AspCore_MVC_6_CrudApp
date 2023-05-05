@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySoft.Areas.HRM.Models;
 using MySoft.Service.HRM;
+using MySoft.Service.Master;
 
 namespace MySoft.Areas.HRM.Controllers
 {
@@ -10,9 +11,11 @@ namespace MySoft.Areas.HRM.Controllers
 
         #region Constructor
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService)
+        private readonly ICountryService _countryService;
+        public EmployeeController(IEmployeeService employeeService,ICountryService countryService)
         {
             this._employeeService = employeeService;
+            this._countryService = countryService;
         }
         #endregion
 
@@ -37,9 +40,15 @@ namespace MySoft.Areas.HRM.Controllers
         }
 
         // GET: EmployeeController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            VmEmployee objEmployee = new VmEmployee
+            {
+                Countries=await _countryService.GetALLCountryAsync()
+            };
+
+
+            return View(objEmployee);
         }
 
         // POST: EmployeeController/Create
